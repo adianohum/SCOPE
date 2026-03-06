@@ -1,0 +1,117 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2639
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fnil\fcharset0 AppleColorEmoji;\f2\fnil\fcharset134 PingFangSC-Regular;
+\f3\froman\fcharset0 Times-Bold;\f4\froman\fcharset0 Times-Roman;\f5\fswiss\fcharset0 Helvetica-Bold;
+}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+{\*\listtable{\list\listtemplateid1\listhybrid{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{decimal\}}{\leveltext\leveltemplateid1\'01\'00;}{\levelnumbers\'01;}\fi-360\li720\lin720 }{\listname ;}\listid1}}
+{\*\listoverridetable{\listoverride\listid1\listoverridecount0\ls1}}
+\paperw11900\paperh16840\margl1440\margr1440\vieww28300\viewh14280\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 # HALO: Hybrid Algorithms Learning on Orbits\
+\
+[![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)\
+[![Framework](https://img.shields.io/badge/Powered%20by-PennyLane-yellow)](https://pennylane.ai/)\
+[![Framework](https://img.shields.io/badge/Powered%20by-Scikit--Learn-orange)](https://scikit-learn.org/)\
+\
+This repository contains the official implementation of the **HALO** protocol, a Quantum Federated Learning (QFL) architecture designed to balance Differential Privacy ($\\epsilon$-DP) and convergence stability in resource-constrained environments (NISQ era).\
+\
+## 
+\f1 \uc0\u55357 \u56524 
+\f0  Overview\
+\
+Traditional Federated Learning models suffer from severe performance degradation when strict Differential Privacy (DP) noise is applied to their gradients. **HALO** addresses this instability by exploiting the periodic nature of Variational Quantum Circuits (VQCs).\
+\
+Key features of this implementation:\
+1. **Geometric Saturation:** Utilizes angular parameters (bloch sphere rotations) to naturally absorb Laplacian noise, preventing the gradient explosion seen in classical Euclidean spaces.\
+2. **Federated Learning Loop:** Simulates a distributed environment using a FedAvg-style aggregation.\
+3. **Privacy vs. Utility Evaluation:** Includes built-in Membership Inference Attack (MIA) vulnerability scoring alongside standard accuracy metrics.\
+4. **NISQ-Aware:** Compresses input features (64 pixels to 2 PCA coordinates) to operate efficiently on a 2-qubit architecture.\
+\
+## 
+\f1 \uc0\u55357 \u56960 
+\f0  Repository Structure\
+\
+```text\
+HALO/\
+
+\f2 \'a9\'c0
+\f0 \uc0\u9472 \u9472  figures/                # Project visualizations and plots\
+\uc0\u9474    
+\f2 \'a9\'c0
+\f0 \uc0\u9472 \u9472  dataset_viz.png     # Raw pixels vs PCA latent space\
+\uc0\u9474    
+\f2 \'a9\'c0
+\f0 \uc0\u9472 \u9472  results_main.png    # Accuracy & MIA bars, CDF distributions\
+\uc0\u9474    \u9492 \u9472 \u9472  decision_boundary.png # Classical vs Quantum boundaries\
+
+\f2 \'a9\'c0
+\f0 \uc0\u9472 \u9472  halo_def.py             # Main simulation script (Training, DP, MIA)\
+
+\f2 \'a9\'c0
+\f0 \uc0\u9472 \u9472  LICENSE                 # MIT License\
+\uc0\u9492 \u9472 \u9472  README.md               # This documentation\
+\
+\pard\pardeftab720\sa298\partightenfactor0
+
+\f1\fs36 \cf0 \expnd0\expndtw0\kerning0
+\uc0\u55357 \u57056 \u65039 
+\f3\b  Installation & Setup\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f4\b0\fs24 \cf0 Ensure you have Python 3.8+ installed. It is recommended to use a virtual environment.\
+# Clone the repository\
+git clone [https://github.com/adianohum/HALO.git](https://github.com//adianohum/HALO.git)\
+cd HALO\
+\
+# Install required dependencies\
+pip install pennylane scikit-learn matplotlib numpy\
+\
+\pard\pardeftab720\sa298\partightenfactor0
+
+\f1\fs36 \cf0 \uc0\u55357 \u56507 
+\f5\b  Usage\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f0\b0\fs24 \cf0 To run the full simulation, which compares a Classical Neural Network against the Quantum Model (VQC) across different privacy budgets ($\\epsilon$), simply execute:\
+python halo_def.py\
+\pard\pardeftab720\sa280\partightenfactor0
+
+\f5\b\fs28 \cf0 What the script does:\
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sa240\partightenfactor0
+\ls1\ilvl0
+\f0\b0\fs24 \cf0 \kerning1\expnd0\expndtw0 {\listtext	1	}\expnd0\expndtw0\kerning0
+Loads and preprocesses the Digits dataset (binary classification 0 vs 1).\
+\ls1\ilvl0\kerning1\expnd0\expndtw0 {\listtext	2	}\expnd0\expndtw0\kerning0
+Runs a Federated Learning loop for both Classical and Quantum models.\
+\ls1\ilvl0\kerning1\expnd0\expndtw0 {\listtext	3	}\expnd0\expndtw0\kerning0
+Applies Laplacian noise based on the $\\epsilon$ list [0.5, 1.0, 2.0, 3.0, 10.0, inf].\
+\ls1\ilvl0\kerning1\expnd0\expndtw0 {\listtext	4	}\expnd0\expndtw0\kerning0
+Evaluates test accuracy and Membership Inference Attack (MIA) success rate.\
+\ls1\ilvl0\kerning1\expnd0\expndtw0 {\listtext	5	}\expnd0\expndtw0\kerning0
+Generates a comprehensive 2x2 summary plot.\
+\pard\pardeftab720\sa298\partightenfactor0
+
+\f1\fs36 \cf0 \uc0\u55357 \u56522 
+\f5\b  Key Results\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f0\b0\fs24 \cf0 Under strict privacy constraints ($\\epsilon = 2.0$), the classical model exhibits high variance and instability. In contrast, 
+\f5\b HALO
+\f0\b0  maintains deterministic convergence. Both models respect the privacy threshold, but the quantum approach retains a significantly higher utility curve.\
+\pard\pardeftab720\sa298\partightenfactor0
+
+\f1\fs36 \cf0 \uc0\u55357 \u56599 
+\f5\b  Citation\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f0\b0\fs24 \cf0 If you use this code in your research, please cite:\
+@inproceedings\{Maia2026halo,\
+  title=\{HALO: Hybrid Algorithms Learning on Orbits for Privacy-Preserving Federated Learning\},\
+  author=\{Adriano Maia and Maycon Peixoto and QTUM UFBA\},\
+  booktitle=\{Anais do Simp\'f3sio Brasileiro de Redes de Computadores e Sistemas Distribu\'eddos (SBRC)\},\
+  year=\{2026\}\
+\}\
+\
+}
