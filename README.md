@@ -19,7 +19,7 @@ SCOPE/
 ├── LICENSE                 # MIT License
 └── README.md               # This documentation
 
-## 🛠️ Installation & Setup
+🛠️ Installation & Setup
 The framework is built in Python and requires standard machine learning libraries.
 
 # Clone the repository
@@ -29,7 +29,7 @@ cd SCOPE
 # Install dependencies
 pip install torch torchvision numpy pandas matplotlib
 
-## 💻 Usage
+💻 Usage
 The entire experimental framework—including baselines, the proposed RIGHT_SIZED policy, Federated Learning loops, and network simulation—is contained within bazooka_qkd_fl_full.py.
 
 1. Run the Full Simulation Grid
@@ -43,7 +43,7 @@ Once the grid execution is complete, use the summarize command to automatically 
 
 python bazooka_qkd_fl_full.py summarize --in results --out results_summary
 
-## 🔗 Citation
+🔗 Citation
 If you use this code in your research, please cite our paper:
 
 @inproceedings{Maia2026scope,
@@ -53,8 +53,8 @@ If you use this code in your research, please cite our paper:
   year={2026}
 }
 
-## 📜 License
+📜 License
 This project is licensed under the MIT License - see the LICENSE file for details.
 
-## 🙏 Acknowledgments
+🙏 Acknowledgments
 This work was partially supported by the QuIIN project "Integração CV-QKD com Redes Clássicas", supported by QuIIN - Quantum Industrial Innovation, Centro de Competência EMBRAPII CIMATEC. It was also supported by CAPES (Finance Code 001) and CNPq (Grant nº 403231/2023-0).
